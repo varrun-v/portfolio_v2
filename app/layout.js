@@ -3,6 +3,8 @@ import "./globals.css";
 import Cursor from "./components/ui/Cursor";
 import ProgressIndicator from "./components/ui/ProgressIndicator";
 import SoundBar from "./components/ui/SoundBar";
+import { CursorProvider } from "./context/CursorContext";
+import ServiceWorkerCleanup from "./components/ServiceWorkerCleanup";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,10 +27,13 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Cursor />
-        <ProgressIndicator />
-        <SoundBar />
-        {children}
+        <ServiceWorkerCleanup />
+        <CursorProvider>
+          <Cursor />
+          <ProgressIndicator />
+          <SoundBar />
+          {children}
+        </CursorProvider>
       </body>
     </html>
   );
