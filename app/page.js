@@ -1,50 +1,69 @@
 'use client';
+import { useLayoutEffect, useRef } from 'react';
+import gsap from 'gsap';
 
 export default function Home() {
+  const comp = useRef(null);
+
+  useLayoutEffect(() => {
+    let ctx = gsap.context(() => {
+      const tl = gsap.timeline();
+
+      // Entrance Animation
+      tl.from(".hero-text", {
+        yPercent: 100,
+        opacity: 0,
+        duration: 1.2,
+        stagger: 0.1,
+        ease: "power4.out",
+        delay: 0.2
+      })
+        .from(".hero-sub", {
+          opacity: 0,
+          y: 20,
+          duration: 1,
+          ease: "power3.out"
+        }, "-=0.8")
+        .from(".scroll-hint", {
+          opacity: 0,
+          duration: 1,
+          delay: 0.5
+        }, "-=0.5");
+
+    }, comp);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <main className="flex min-h-[300vh] flex-col items-center justify-start p-24 bg-zinc-950 text-white">
-      <div className="z-10 max-w-5xl w-full flex-col items-center justify-between font-mono text-sm lg:flex">
-        <h1 className="text-4xl font-bold mb-12 text-center lg:text-left">Jelly Cursor Interaction</h1>
+    <main ref={comp} className="relative min-h-screen flex flex-col items-center justify-center p-6 bg-[var(--background)] overflow-hidden">
 
-        {/* HERO SECTION FOR TESTING CURSOR */}
-        <div className="flex flex-col gap-8 items-center lg:items-start mb-24 z-50">
-          <button
-            className="px-8 py-4 rounded-full border border-white/20 hover:bg-white/10 transition-colors text-xl font-light tracking-wide cursor-none"
-          >
-            Hover Button
-          </button>
+      {/* Background Ambience (Optional Subtle Gradient) */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/20 pointer-events-none" />
 
-          <div className="flex gap-6">
-            <a
-              href="#"
-              className="text-gray-400 hover:text-white transition-colors text-lg"
-            >
-              Hover Link
-            </a>
-            <a
-              href="#"
-              className="text-gray-400 hover:text-white transition-colors text-lg"
-            >
-              Another Link
-            </a>
-          </div>
+      {/* Main Typography */}
+      <div className="z-10 flex flex-col items-center text-center">
+        <div className="overflow-hidden mb-2">
+          <h1 className="hero-text text-[15vw] leading-[0.8] font-bold tracking-tighter text-[var(--foreground)] mix-blend-difference select-none">
+            VARUN
+          </h1>
+        </div>
+
+        <div className="overflow-hidden">
+          <p className="hero-sub text-xl md:text-2xl font-light tracking-wide text-[var(--muted-foreground)] mt-8 max-w-lg">
+            Creative Developer & <span className="text-[var(--accent)]">Designer</span>
+          </p>
         </div>
       </div>
 
-      <div className="mt-12 text-center max-w-2xl">
-        <p className="text-xl opacity-60 leading-relaxed max-w-lg mx-auto">
-          Move your mouse fast! The inner dot has a <span className="text-white font-medium">Jelly Effect</span> (increases size with speed).
-          The outer circle follows smoothly.
-        </p>
+      {/* Scroll Hint */}
+      <div className="scroll-hint absolute bottom-12 flex flex-col items-center gap-2 opacity-60">
+        <span className="text-[10px] uppercase tracking-[0.2em] text-[var(--muted-foreground)]">Scroll</span>
+        <div className="w-[1px] h-12 bg-gradient-to-b from-[var(--muted-foreground)] to-transparent" />
       </div>
 
-      <div className="mt-96 text-center">
-        <p className="opacity-50">Scroll down to see the progress bar...</p>
-      </div>
-
-      <div className="mt-96 text-center">
-        <p className="opacity-30">Keep scrolling...</p>
-      </div>
+      {/* Height spacer for scrolling (Act 2 placeholder) */}
+      <div className="h-screen" />
     </main>
   );
 }
