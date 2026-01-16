@@ -29,6 +29,12 @@ const PROJECTS = [
   }
 ];
 
+const SKILLS = {
+  languages: ["HTML", "CSS", "Javascript", "Typescript", "Python", "Java", "C++"],
+  libraries: ["React", "Next.js", "Redux", "TailwindCSS", "Sass", "GSAP", "Three.js", "Chakra UI", "Styled Components"],
+  backend: ["Node.js", "Express", "MongoDB", "MySQL", "Git", "Figma", "Adobe XD"]
+};
+
 export default function Home() {
   const comp = useRef(null);
 
@@ -59,7 +65,6 @@ export default function Home() {
 
       // Act 2: Philosophy Scroll Triggers
       const philosophySentences = gsap.utils.toArray(".philosophy-text");
-
       philosophySentences.forEach((text) => {
         gsap.from(text, {
           scrollTrigger: {
@@ -88,6 +93,23 @@ export default function Home() {
           y: 60,
           duration: 1,
           ease: "power3.out"
+        });
+      });
+
+      // Act 4: Skills Reveal
+      const skillCategories = gsap.utils.toArray(".skill-category");
+      skillCategories.forEach((cat, i) => {
+        gsap.from(cat, {
+          scrollTrigger: {
+            trigger: cat,
+            start: "top 90%",
+            toggleActions: "play none none reverse"
+          },
+          opacity: 0,
+          y: 30,
+          duration: 0.8,
+          delay: i * 0.1,
+          ease: "power2.out"
         });
       });
 
@@ -142,26 +164,21 @@ export default function Home() {
 
       {/* --- ACT 3: SELECTED WORK --- */}
       <section className="relative w-full max-w-6xl mx-auto px-6 py-24 space-y-32 z-10">
-        {/* Section Header */}
         <div className="flex items-baseline justify-between border-b border-[var(--border)] pb-6 mb-16">
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Selected Work</h2>
           <span className="hidden md:block text-[var(--muted-foreground)] text-sm uppercase tracking-wider">(2023 — 2025)</span>
         </div>
 
-        {/* Projects List */}
         <div className="flex flex-col gap-24">
           {PROJECTS.map((project, index) => (
             <div key={project.id} className="project-card group relative cursor-pointer">
-              {/* Image Placeholder */}
               <div className="w-full aspect-[16/9] md:aspect-[21/9] bg-[var(--muted)] rounded-lg overflow-hidden relative mb-8">
                 <div className="absolute inset-0 bg-neutral-800 group-hover:bg-neutral-700 transition-colors duration-500" />
-                {/* Optional: Add actual image later */}
                 <div className="absolute inset-0 flex items-center justify-center opacity-30 group-hover:opacity-50 transition-opacity">
                   <span className="text-6xl font-bold tracking-tighter mix-blend-overlay">{index + 1}</span>
                 </div>
               </div>
 
-              {/* Info */}
               <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-4 border-b border-transparent group-hover:border-[var(--border)] pb-4 transition-colors duration-300">
                 <div>
                   <h3 className="text-3xl font-bold mb-2 group-hover:text-[var(--accent)] transition-colors duration-300">{project.title}</h3>
@@ -177,9 +194,54 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Placeholder for Act 4 */}
+      {/* --- ACT 4: SKILLS --- */}
+      <section className="relative w-full max-w-5xl mx-auto px-6 py-32 z-10">
+        <div className="mb-24">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-8">Expertise</h2>
+          <p className="text-xl text-[var(--muted-foreground)] max-w-2xl">
+            A holistic approach to digital product creation, mastering both the creative and technical aspects of development.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
+          <div className="skill-category">
+            <h3 className="text-sm font-bold uppercase tracking-widest text-[var(--accent)] mb-6">Languages</h3>
+            <ul className="space-y-3">
+              {SKILLS.languages.map(skill => (
+                <li key={skill} className="text-lg text-[var(--foreground)] opacity-80 hover:opacity-100 transition-opacity">
+                  {skill}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="skill-category">
+            <h3 className="text-sm font-bold uppercase tracking-widest text-[var(--accent)] mb-6">Libraries</h3>
+            <ul className="space-y-3">
+              {SKILLS.libraries.map(skill => (
+                <li key={skill} className="text-lg text-[var(--foreground)] opacity-80 hover:opacity-100 transition-opacity">
+                  {skill}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="skill-category">
+            <h3 className="text-sm font-bold uppercase tracking-widest text-[var(--accent)] mb-6">Backend & Tools</h3>
+            <ul className="space-y-3">
+              {SKILLS.backend.map(skill => (
+                <li key={skill} className="text-lg text-[var(--foreground)] opacity-80 hover:opacity-100 transition-opacity">
+                  {skill}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Placeholder for Act 5 */}
       <div className="h-screen w-full flex items-center justify-center opacity-30">
-        Act 4: Skills (Coming Soon)
+        Act 5: Contact (Coming Soon)
       </div>
 
     </main>
