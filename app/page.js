@@ -146,9 +146,12 @@ export default function Home() {
             </h1>
           </div>
 
-          <div className="overflow-hidden">
-            <p className="hero-sub text-xl md:text-2xl font-light tracking-wide text-[var(--muted-foreground)] mt-8 max-w-lg">
-              Creative Developer & <span className="text-[var(--accent)]">Designer</span>
+          <div className="overflow-hidden flex flex-col items-center">
+            <h2 className="hero-sub text-2xl md:text-3xl font-medium tracking-tight text-[var(--foreground)] mt-8">
+              Full-Stack Engineer
+            </h2>
+            <p className="hero-sub text-lg md:text-xl font-light tracking-wide text-[var(--muted-foreground)] mt-4 max-w-lg">
+              Designing <span className="text-[var(--accent)]">scalable systems</span> and thoughtful user experiences
             </p>
           </div>
         </div>
@@ -163,15 +166,15 @@ export default function Home() {
       <section className="relative w-full max-w-4xl mx-auto px-6 py-24 md:py-48 flex flex-col gap-32 z-10">
         <div className="philosophy-text text-3xl md:text-5xl lg:text-6xl font-medium leading-tight text-center text-[var(--foreground)]">
           <span className="block text-[var(--muted-foreground)] text-lg uppercase tracking-widest mb-4">Philosophy</span>
-          I build <span className="text-[var(--accent)]">scalable</span> and performant apps with a focus on engineering.
+          Building <span className="text-[var(--accent)]">scalable</span> and performant apps with a focus on engineering.
         </div>
 
         <div className="philosophy-text text-3xl md:text-5xl lg:text-6xl font-medium leading-tight text-center text-[var(--foreground)]">
-          I craft user experiences using <span className="text-white">modern architecture</span> and clean design.
+          Crafting user experiences using <span className="text-white">modern architecture</span> and clean design.
         </div>
 
         <div className="philosophy-text text-3xl md:text-5xl lg:text-6xl font-medium leading-tight text-center text-[var(--foreground)]">
-          An obsession for <span className="text-[var(--accent)]">attention to detail</span> defines my work.
+           Focused on <span className="text-[var(--accent)]">detail</span>, clarity, and continuous improvement.
         </div>
       </section>
 
