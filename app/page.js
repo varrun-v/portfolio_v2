@@ -174,7 +174,7 @@ export default function Home() {
         </div>
 
         <div className="philosophy-text text-3xl md:text-5xl lg:text-6xl font-medium leading-tight text-center text-[var(--foreground)]">
-           Focused on <span className="text-[var(--accent)]">detail</span>, clarity, and continuous improvement.
+          Focused on <span className="text-[var(--accent)]">detail</span>, clarity, and continuous improvement.
         </div>
       </section>
 
@@ -281,6 +281,9 @@ export default function Home() {
       <footer className="w-full py-8 text-center text-sm text-[var(--muted-foreground)] opacity-50 z-10 relative">
         <p>&copy; {new Date().getFullYear()} Varun. All rights reserved.</p>
         <p className="mt-2 text-xs">Crafted with Next.js & GSAP</p>
+        <p className="mt-2 text-[10px] opacity-70">
+          Music: <a href="https://soundcloud.com/agusalvarez" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--foreground)] transition-colors">The Feeling by AgusAlvarez & Luke Bergs</a>
+        </p>
       </footer>
 
     </main>
