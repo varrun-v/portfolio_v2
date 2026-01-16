@@ -213,9 +213,9 @@ export default function Home() {
       {/* --- ACT 4: SKILLS --- */}
       <section className="relative w-full max-w-5xl mx-auto px-6 py-32 z-10">
         <div className="mb-24">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-8">Expertise</h2>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-8">Capabilities</h2>
           <p className="text-xl text-[var(--muted-foreground)] max-w-2xl">
-            A holistic approach to digital product creation, mastering both the creative and technical aspects of development.
+            A holistic approach to building digital products, balancing technical foundations with thoughtful execution.
           </p>
         </div>
 
