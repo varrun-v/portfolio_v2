@@ -259,7 +259,7 @@ export default function Home() {
       <section className="contact-section relative w-full h-[70vh] flex flex-col items-center justify-center text-center p-6 z-10">
         <h2 className="text-5xl md:text-7xl font-bold tracking-tight mb-8">Let's work together.</h2>
         <p className="text-xl md:text-2xl text-[var(--muted-foreground)] max-w-2xl mb-12">
-          I'm currently available for freelance work and open to full-time opportunities.
+          Currently available for freelance work and open to full-time roles.
         </p>
 
         <a
@@ -280,7 +280,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="w-full py-8 text-center text-sm text-[var(--muted-foreground)] opacity-50 z-10 relative">
         <p>&copy; {new Date().getFullYear()} Varun. All rights reserved.</p>
-        <p className="mt-2 text-xs">Crafted with Next.js, Tailwind & GSAP</p>
+        <p className="mt-2 text-xs">Crafted with Next.js & GSAP</p>
       </footer>
 
     </main>
