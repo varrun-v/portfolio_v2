@@ -17,8 +17,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Varun Portfolio V2",
-  description: "A modern, animated portfolio built with Next.js 14 and GSAP.",
+  title: "Varun",
+  description: "Varun's Portfolio.",
+  appleWebApp: {
+    title: "Varun",
+  },
 };
 
 export default function RootLayout({ children }) {
