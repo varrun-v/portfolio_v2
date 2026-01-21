@@ -57,10 +57,11 @@ export default function Home() {
       const tl = gsap.timeline();
 
       // Act 1: Entrance Animation
-      tl.from(".hero-text", {
+      tl.from(".hero-char", {
         yPercent: 100,
+        rotateX: -90,
         opacity: 0,
-        duration: 1.2,
+        duration: 2,
         stagger: 0.1,
         ease: "power4.out",
         delay: 0.2
@@ -143,7 +144,27 @@ export default function Home() {
     }, comp);
 
     return () => ctx.revert();
+    return () => ctx.revert();
   }, [isLoading]);
+
+  // Interactive Hover Effect
+  const handleHover = (e) => {
+    gsap.to(e.target, {
+      scale: 1.3,
+      color: "var(--accent)",
+      duration: 0.3,
+      ease: "power2.out"
+    });
+  };
+
+  const handleLeave = (e) => {
+    gsap.to(e.target, {
+      scale: 1,
+      color: "var(--foreground)",
+      duration: 0.3,
+      ease: "power2.out"
+    });
+  };
 
   // Show Loader if loading
   // Note: We're not unmounting the main content, just covering it or returning early.
@@ -164,9 +185,18 @@ export default function Home() {
       {/* --- ACT 1: HERO --- */}
       <section className="relative min-h-screen w-full flex flex-col items-center justify-center p-6 z-10">
         <div className="flex flex-col items-center text-center">
-          <div className="overflow-hidden mb-2">
-            <h1 className="hero-text text-[15vw] leading-[0.8] font-bold tracking-tighter text-[var(--foreground)] mix-blend-difference select-none">
-              VARUN
+          <div className="overflow-hidden mb-2 perspective-1000">
+            <h1 className="hero-text text-[15vw] leading-[0.8] font-bold tracking-tighter text-[var(--foreground)] mix-blend-difference select-none flex perspective-text">
+              {"VARUN".split("").map((char, index) => (
+                <span
+                  key={index}
+                  className="hero-char inline-block cursor-default transform-style-3d text-[var(--foreground)]"
+                  onMouseEnter={handleHover}
+                  onMouseLeave={handleLeave}
+                >
+                  {char}
+                </span>
+              ))}
             </h1>
           </div>
 
