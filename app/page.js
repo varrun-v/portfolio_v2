@@ -1,7 +1,8 @@
 'use client';
-import { useLayoutEffect, useRef } from 'react';
+import { useLayoutEffect, useRef, useState, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Loader from './components/ui/Loader';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -37,8 +38,21 @@ const SKILLS = {
 
 export default function Home() {
   const comp = useRef(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Loading Timer
+  useEffect(() => {
+    // Minimum load time of 3.5 seconds
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 3500);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   useLayoutEffect(() => {
+    if (isLoading) return; // Wait for loading to finish
+
     let ctx = gsap.context(() => {
       const tl = gsap.timeline();
 
@@ -129,7 +143,17 @@ export default function Home() {
     }, comp);
 
     return () => ctx.revert();
-  }, []);
+  }, [isLoading]);
+
+  // Show Loader if loading
+  // Note: We're not unmounting the main content, just covering it or returning early.
+  // Actually returning early is safer for GSAP context initialization timeline.
+  // BUT SEO-wise, we might want content in DOM. 
+  // For a portfolio, a simple condition is fine.
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <main ref={comp} className="relative flex flex-col items-center bg-[var(--background)] overflow-x-hidden">
