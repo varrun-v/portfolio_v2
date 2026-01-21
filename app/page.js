@@ -9,31 +9,31 @@ gsap.registerPlugin(ScrollTrigger);
 const PROJECTS = [
   {
     id: 1,
-    title: "Project One",
+    title: "Exotic Trade",
     category: "Development",
-    year: "2025",
-    description: "A placeholder description for the first project showcase."
+    year: "2024",
+    description: "An e-commerce website to sell auctionable items."
   },
   {
     id: 2,
-    title: "Project Two",
+    title: "RE-DACT",
     category: "Design System",
     year: "2024",
-    description: "Defining visual language and interactive components for a modern brand."
+    description: "A text-redaction tool that detects and masks sensitive entities."
   },
   {
     id: 3,
-    title: "Project Three",
+    title: "Multi-tenant PMS",
     category: "Experience",
-    year: "2023",
-    description: "Immersive web experience built with WebGL and Next.js."
+    year: "2025",
+    description: "A multi-tenant property management system."
   }
 ];
 
 const SKILLS = {
-  languages: ["HTML", "CSS", "Javascript", "Typescript", "Python", "Java", "C++"],
-  libraries: ["React", "Next.js", "Redux", "TailwindCSS", "Sass", "GSAP", "Three.js", "Chakra UI", "Styled Components"],
-  backend: ["Node.js", "Express", "MongoDB", "MySQL", "Git", "Figma", "Adobe XD"]
+  languages: ["HTML", "CSS", "Javascript", "Typescript", "Java", "C++"],
+  libraries: ["React", "Next.js", "Redux", "TailwindCSS"],
+  backend: ["Node.js", "Express", "MongoDB", "MySQL", "Git"]
 };
 
 export default function Home() {
@@ -42,10 +42,9 @@ export default function Home() {
 
   // Loading Timer
   useEffect(() => {
-    // Minimum load time of 3.5 seconds
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 3500);
+    }, 2800);
 
     return () => clearTimeout(timer);
   }, []);
@@ -56,7 +55,6 @@ export default function Home() {
     let ctx = gsap.context(() => {
       const tl = gsap.timeline();
 
-      // Act 1: Entrance Animation
       // Act 1: Entrance Animation
         tl.from(".hero-char", {
           z: -400,
@@ -336,7 +334,6 @@ export default function Home() {
       {/* Footer */}
       <footer className="w-full py-8 text-center text-sm text-[var(--muted-foreground)] opacity-50 z-10 relative">
         <p>&copy; {new Date().getFullYear()} Varun. All rights reserved.</p>
-        <p className="mt-2 text-xs">Crafted with Next.js & GSAP</p>
         <p className="mt-2 text-[10px] opacity-70">
           Music: <a href="https://soundcloud.com/agusalvarez" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--foreground)] transition-colors">The Feeling by AgusAlvarez & Luke Bergs</a>
         </p>
