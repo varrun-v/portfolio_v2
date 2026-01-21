@@ -58,20 +58,16 @@ export default function Home() {
 
       // Act 1: Entrance Animation
       // Act 1: Entrance Animation
-      tl.from(".hero-char", {
-        opacity: 0,
-        x: () => gsap.utils.random(-200, 200),
-        y: () => gsap.utils.random(-150, 150),
-        rotation: () => gsap.utils.random(-360, 360),
-        scale: () => gsap.utils.random(0.5, 3),
-        duration: 3, // Slowed down significantly
-        stagger: {
-          amount: 0.8, // Slightly longer ripple
-          from: "center"
-        },
-        ease: "elastic.out(1, 0.4)", // Bouncy!
-        delay: 0.2
-      })
+        tl.from(".hero-char", {
+          z: -400,
+          opacity: 0,
+          duration: 1.4,
+          stagger: {
+            amount: 0.6,
+            from: "center"
+          },
+          ease: "power4.out"
+        })
         .from(".hero-sub", {
           opacity: 0,
           y: 20,
