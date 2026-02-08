@@ -16,6 +16,7 @@ export default function ProjectModal({ project, onClose }) {
     const modalRef = useRef(null);
     const contentRef = useRef(null);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [isFullScreen, setIsFullScreen] = useState(false);
 
     useEffect(() => {
         if (project) {
@@ -96,30 +97,47 @@ export default function ProjectModal({ project, onClose }) {
                 </button>
 
                 {/* Left Side: Image Slider (60%) */}
-                <div className="relative w-full md:w-[60%] bg-neutral-900 border-b md:border-b-0 md:border-r border-neutral-800 h-[250px] md:h-auto overflow-hidden group">
+                <div
+                    className="relative w-full md:w-[60%] bg-neutral-900 border-b md:border-b-0 md:border-r border-neutral-800 h-[250px] md:h-auto overflow-hidden group cursor-zoom-in"
+                    onClick={() => setIsFullScreen(true)}
+                >
                     {project.images && project.images.length > 0 ? (
-                        <div className="w-full h-full relative">
-                            <img
-                                src={project.images[currentImageIndex]}
-                                alt={`${project.title} - Image ${currentImageIndex + 1}`}
-                                className="w-full h-full object-cover"
-                            />
+                        <div className="w-full h-full relative overflow-hidden">
+                            {/* Blurred Background Layer */}
+                            <div className="absolute inset-0 z-0">
+                                <img
+                                    src={project.images[currentImageIndex]}
+                                    alt=""
+                                    className="w-full h-full object-cover blur-2xl opacity-40 scale-110"
+                                />
+                            </div>
+
+                            {/* Main Image Layer (Fit) */}
+                            <div className="absolute inset-0 z-10 flex items-center justify-center p-4 md:p-8">
+                                <img
+                                    src={project.images[currentImageIndex]}
+                                    alt={`${project.title} - Image ${currentImageIndex + 1}`}
+                                    className="max-w-full max-h-full object-contain drop-shadow-2xl shadow-black pointer-events-none"
+                                />
+                            </div>
 
                             {project.images.length > 1 && (
                                 <>
                                     <button
                                         onClick={prevImage}
-                                        className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-black/50 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white hover:text-black"
+                                        className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-black/60 text-white rounded-full hover:bg-white hover:text-black transition-colors z-20 backdrop-blur-sm border border-white/10"
+                                        aria-label="Previous image"
                                     >
                                         <FaChevronLeft size={16} />
                                     </button>
                                     <button
                                         onClick={nextImage}
-                                        className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-black/50 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white hover:text-black"
+                                        className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-black/60 text-white rounded-full hover:bg-white hover:text-black transition-colors z-20 backdrop-blur-sm border border-white/10"
+                                        aria-label="Next image"
                                     >
                                         <FaChevronRight size={16} />
                                     </button>
-                                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
                                         {project.images.map((_, idx) => (
                                             <div
                                                 key={idx}
@@ -153,10 +171,10 @@ export default function ProjectModal({ project, onClose }) {
                                     href={project.links.demo}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center gap-2 px-4 py-2 bg-[var(--foreground)] text-[var(--background)] rounded-full text-sm font-medium hover:bg-[var(--accent)] hover:text-black transition-colors"
+                                    className="flex items-center gap-2 px-4 py-2 bg-white text-black font-bold rounded-full text-sm hover:bg-[var(--accent)] transition-colors shadow-lg shadow-white/10"
                                 >
                                     <FaExternalLinkAlt size={12} />
-                                    Live Demo
+                                    Live
                                 </a>
                             )}
                             {project.links?.github && (
@@ -193,6 +211,49 @@ export default function ProjectModal({ project, onClose }) {
                     </div>
                 </div>
             </div>
+
+            {/* FULL SCREEN OVERLAY */}
+            {isFullScreen && (
+                <div
+                    className="fixed inset-0 z-[60] bg-black flex items-center justify-center p-4 animate-in fade-in duration-300"
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        setIsFullScreen(false);
+                    }}
+                >
+                    <button
+                        className="absolute top-6 right-6 p-4 text-white hover:text-[var(--accent)] z-50"
+                        onClick={() => setIsFullScreen(false)}
+                    >
+                        <FaTimes size={32} />
+                    </button>
+
+                    <div className="relative w-full h-full flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
+                        <img
+                            src={project.images[currentImageIndex]}
+                            alt="Full screen project view"
+                            className="max-w-full max-h-full object-contain"
+                        />
+
+                        {project.images.length > 1 && (
+                            <>
+                                <button
+                                    onClick={prevImage}
+                                    className="absolute left-4 top-1/2 -translate-y-1/2 p-4 bg-black/50 text-white rounded-full hover:bg-white hover:text-black transition-colors backdrop-blur-md border border-white/10"
+                                >
+                                    <FaChevronLeft size={24} />
+                                </button>
+                                <button
+                                    onClick={nextImage}
+                                    className="absolute right-4 top-1/2 -translate-y-1/2 p-4 bg-black/50 text-white rounded-full hover:bg-white hover:text-black transition-colors backdrop-blur-md border border-white/10"
+                                >
+                                    <FaChevronRight size={24} />
+                                </button>
+                            </>
+                        )}
+                    </div>
+                </div>
+            )}
         </div>,
         document.body
     );

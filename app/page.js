@@ -11,21 +11,19 @@ const PROJECTS = [
   {
     id: 1,
     title: "Property Management System",
-    year: "2025",
+    year: "2026",
     description: "A comprehensive Property Management System (PMS) supporting multiple tenants. Includes features for booking management, housekeeping scheduling, and financial reporting. Designed for scalability and ease of use.",
-    techStack: ["Next.js", "Supabase", "Prisma", "Zustand", "Shadcn UI"],
+    techStack: ["Next.js", "Prisma", "MySQL", "Postgres", "Supabase", "Python"],
     links: {
-      demo: "https://example.com/pms",
-      github: "https://github.com/example/pms"
     },
     images: [
-      "https://placehold.co/800x500/333/666?text=PMS+Dashboard",
-      "https://placehold.co/800x500/333/666?text=Booking+Calendar",
-      "https://placehold.co/800x500/333/666?text=Tenant+Settings"
+      "projects/td-1.png",
+      "projects/td-2.png",
+      "projects/td-3.png"
     ]
   },
   {
-    id: 3,
+    id: 2,
     title: "Exotic Trade",
     year: "2024",
     description: "An e-commerce platform designed for auctioning unique and rare items. Features real-time bidding, user authentication, and a secure payment gateway. Built to handle high-concurrency traffic during auctions.",
@@ -34,32 +32,89 @@ const PROJECTS = [
       demo: "https://exotic-chi.vercel.app",
     },
     images: [
-      "https://placehold.co/800x500/111/444?text=Auction+Dashboard",
-      "https://placehold.co/800x500/111/444?text=Exotic+Trade+Hero",
-      "https://placehold.co/800x500/111/444?text=Bidding+Interface"
+      "/projects/et-1.png",
+      "/projects/et-2.png",
     ]
   },
   {
-    id: 2,
+    id: 3,
     title: "RE-DACT",
-    year: "2024",
+    year: "2025",
     description: "A specialized text-redaction tool that automatically detects and masks sensitive entities like names, dates, and locations within documents. Prioritizes privacy and data security for legal and compliance teams.",
-    techStack: ["Next.js", "Python", "SpaCy", "AWS Lambda", "TypeScript"],
+    techStack: ["Next.js", "Python", "SpaCy"],
     links: {
-      demo: "https://example.com/redact",
-      github: "https://github.com/example/re-dact"
+      github: "https://github.com/varrun-v/RE-DACT"
+    },
+    images: [
+      "projects/rd-1.png",
+      "projects/rd-2.png",
+      "projects/rd-3.png"
+    ]
+  },
+    {
+    id: 4,
+    title: "Posture Monitoring",
+    year: "2026",
+    description: " ",
+    techStack: ["Java"],
+    links: {
+      github: "https://github.com/varrun-v/posture"
     },
     images: [
       "https://placehold.co/800x500/222/555?text=RE-DACT+Interface",
       "https://placehold.co/800x500/222/555?text=Redaction+Process"
     ]
+  },
+  {
+    id: 5,
+    title: "Lightweight API observability tool",
+    year: "2025",
+    description: " ",
+    techStack: ["Next.js", "Express", "Redis", "Postgres", "OpenAPI"],
+    links: {
+      github: "https://github.com/varrun-v/API-Management-System"
+    },
+    images: [
+      "projects/api-1.png",
+    ]
+  },
+  {
+    id: 6,
+    title: "System and Network Monitoring Suite",
+    year: "2025",
+    description: " ",
+    techStack: ["Next.js", "Python"],
+    links: {
+      github: "https://github.com/varrun-v/System-monitoring-suite"
+    },
+    images: [
+      "projects/sm-1.png",
+      "projects/sm-2.png",
+      "projects/sm-3.png",
+      "projects/sm-4.png",
+      "projects/sm-5.png",
+      "projects/sm-6.png"
+    ]
+  },
+  {
+    id: 7,
+    title: "CLI Password Manager",
+    year: "2026",
+    description: " ",
+    techStack: ["Java"],
+    links: {
+      github: "https://github.com/varrun-v/PMcli"
+    },
+    images: [
+      "projects/pm-1.png"
+    ]
   }
 ];
 
 const SKILLS = {
-  languages: ["HTML", "CSS", "Javascript", "Typescript", "Java", "C++"],
-  libraries: ["React", "Next.js", "Redux", "TailwindCSS"],
-  backend: ["Node.js", "Express", "MongoDB", "MySQL", "Git"]
+  languages: ["HTML", "CSS", "Javascript", "Java", "C++", "Python"],
+  libraries: ["React", "Next.js", "Tailwind"],
+  backend: ["Express", "MongoDB", "MySQL", "Git", "Podman", "Docker", "Redis", "Postgres", "Linux"]
 };
 
 export default function Home() {
@@ -257,41 +312,51 @@ export default function Home() {
       <section className="relative w-full max-w-6xl mx-auto px-6 py-24 space-y-32 z-10">
         <div className="flex items-baseline justify-between border-b border-[var(--border)] pb-6 mb-16">
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Selected Work</h2>
-          <span className="hidden md:block text-[var(--muted-foreground)] text-sm uppercase tracking-wider">(2023 — 2025)</span>
+          <span className="hidden md:block text-[var(--muted-foreground)] text-sm uppercase tracking-wider">(2023 — 2026)</span>
         </div>
 
-        <div className="flex flex-col gap-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
           {PROJECTS.map((project, index) => (
             <div
               key={project.id}
-              className="project-card group relative cursor-pointer"
+              className="project-card group relative cursor-pointer flex flex-col"
               onClick={() => setSelectedProject(project)}
             >
-              <div className="w-full aspect-[16/9] md:aspect-[21/9] bg-[var(--muted)] rounded-lg overflow-hidden relative mb-8">
-                {/* Hero Image for Card (First from list or Placeholder) */}
-                <div className="absolute inset-0">
+              <div className="w-full aspect-[16/9] bg-neutral-900 rounded-lg overflow-hidden relative mb-6 border border-white/5">
+                {/* 1. Blurred Background Layer */}
+                <div className="absolute inset-0 z-0">
                   <img
-                    src={project.images[0]}
-                    alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100"
+                    src={project.images?.[0]}
+                    alt=""
+                    className="w-full h-full object-cover blur-xl opacity-40 scale-110"
+                    aria-hidden="true"
                   />
                 </div>
 
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <span className="bg-white/10 backdrop-blur-md px-6 py-3 rounded-full text-white text-sm uppercase tracking-widest border border-white/20">
+                {/* 2. Main Image Layer (Contained) */}
+                <div className="absolute inset-0 z-10 p-4 transition-transform duration-700 group-hover:scale-[1.02]">
+                  <img
+                    src={project.images?.[0]}
+                    alt={project.title}
+                    className="w-full h-full object-contain drop-shadow-2xl"
+                  />
+                </div>
+
+                <div className="absolute inset-0 z-20 bg-black/50 group-hover:bg-black/20 transition-colors duration-500" />
+                <div className="absolute inset-0 z-30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <span className="bg-white/10 backdrop-blur-md px-6 py-3 rounded-full text-white text-sm uppercase tracking-widest border border-white/20 shadow-xl">
                     View Project
                   </span>
                 </div>
               </div>
 
-              <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-4 border-b border-transparent group-hover:border-[var(--border)] pb-4 transition-colors duration-300">
+              <div className="flex flex-col justify-between gap-4 border-b border-transparent group-hover:border-[var(--border)] pb-4 transition-colors duration-300 flex-grow">
                 <div>
-                  <h3 className="text-3xl font-bold mb-2 group-hover:text-[var(--accent)] transition-colors duration-300">{project.title}</h3>
-                  <p className="text-[var(--muted-foreground)] max-w-xl text-lg line-clamp-2">{project.description}</p>
-                </div>
-                <div className="flex gap-8 text-[var(--muted-foreground)] text-sm font-mono uppercase tracking-widest">
-                  <span>{project.year}</span>
+                  <div className="flex justify-between items-start mb-2">
+                    <h3 className="text-2xl md:text-3xl font-bold group-hover:text-[var(--accent)] transition-colors duration-300">{project.title}</h3>
+                    <span className="text-[var(--muted-foreground)] text-sm font-mono uppercase tracking-widest border border-[var(--border)] px-2 py-1 rounded">{project.year}</span>
+                  </div>
+                  <p className="text-[var(--muted-foreground)] text-lg line-clamp-2">{project.description}</p>
                 </div>
               </div>
             </div>
@@ -302,7 +367,7 @@ export default function Home() {
       {/* --- ACT 4: SKILLS --- */}
       <section className="relative w-full max-w-5xl mx-auto px-6 py-32 z-10">
         <div className="mb-24">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-8">Capabilities</h2>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-8">I Work With</h2>
           <p className="text-xl text-[var(--muted-foreground)] max-w-2xl">
             A holistic approach to building digital products, balancing technical foundations with thoughtful execution.
           </p>
@@ -359,10 +424,8 @@ export default function Home() {
         </a>
 
         <div className="flex gap-8 text-[var(--muted-foreground)] uppercase tracking-widest text-sm">
-          <a href="#" className="hover:text-[var(--foreground)] transition-colors">LinkedIn</a>
-          <a href="#" className="hover:text-[var(--foreground)] transition-colors">GitHub</a>
-          <a href="#" className="hover:text-[var(--foreground)] transition-colors">Twitter</a>
-          <a href="#" className="hover:text-[var(--foreground)] transition-colors">Instagram</a>
+          <a href="https://www.linkedin.com/in/varrun-v" className="hover:text-[var(--foreground)] transition-colors">LinkedIn</a>
+          <a href="https://github.com/varrun-v" className="hover:text-[var(--foreground)] transition-colors">GitHub</a>
         </div>
       </section>
 
