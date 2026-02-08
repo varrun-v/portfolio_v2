@@ -61,8 +61,8 @@ const PROJECTS = [
       github: "https://github.com/varrun-v/posture"
     },
     images: [
-      "https://placehold.co/800x500/222/555?text=RE-DACT+Interface",
-      "https://placehold.co/800x500/222/555?text=Redaction+Process"
+      "/projects/po-1-e.png",
+      "/projects/po-2-e.png",
     ]
   },
   {
