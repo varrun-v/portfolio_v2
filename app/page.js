@@ -12,7 +12,7 @@ const PROJECTS = [
     id: 1,
     title: "Property Management System",
     year: "2026",
-    description: "A comprehensive Property Management System (PMS) supporting multiple tenants. Includes features for booking management, housekeeping scheduling, and financial reporting. Designed for scalability and ease of use.",
+    description: "A property management system covering properties, tenants, bookings, guests, pricings, expenses and channel manager. the channel manager synchronizes property availability, bookings, and pricing across various OTA platforms like airbnb, booking.com, etc.",
     techStack: ["Next.js", "Prisma", "MySQL", "Postgres", "Supabase", "Python"],
     links: {
     },
@@ -26,7 +26,7 @@ const PROJECTS = [
     id: 2,
     title: "Exotic Trade",
     year: "2024",
-    description: "An e-commerce platform designed for auctioning unique and rare items. Features real-time bidding, user authentication, and a secure payment gateway. Built to handle high-concurrency traffic during auctions.",
+    description: "Developed a full-stack e-commerce system for auction-based, limited-edition collectibles, with administrative tooling and role-based access control for managing inventory and listings",
     techStack: ["React", "Node.js", "Express", "MongoDB", "Socket.io", "TailwindCSS"],
     links: {
       demo: "https://exotic-chi.vercel.app",
@@ -55,7 +55,7 @@ const PROJECTS = [
     id: 4,
     title: "Posture Monitoring",
     year: "2026",
-    description: " ",
+    description: "An intelligent posture monitoring system that uses computer vision to detect slouching in real-time, distributed workers to analyze behavior patterns, WebSocket notifications to send alerts and delivers daily reports via email.",
     techStack: ["Java"],
     links: {
       github: "https://github.com/varrun-v/posture"
@@ -69,7 +69,7 @@ const PROJECTS = [
     id: 5,
     title: "Lightweight API observability tool",
     year: "2025",
-    description: " ",
+    description: "A Lightweight API Observability Gateway using Node.js, Redis, and Postgres for real-time traffic monitoring, audit logging, and error tracking across distributed microservices.",
     techStack: ["Next.js", "Express", "Redis", "Postgres", "OpenAPI"],
     links: {
       github: "https://github.com/varrun-v/API-Management-System"
@@ -82,7 +82,7 @@ const PROJECTS = [
     id: 6,
     title: "System and Network Monitoring Suite",
     year: "2025",
-    description: " ",
+    description: "A centralized device monitoring system with a responsive Next.js–based admin dashboard and a FastAPI backend for secure ingestion and management of system metrics. extracted via tamper-resistant Python agent, packaged as Windows and Linux executables, with secure communication, manual device approval, and authentication workflows inspired by enterprise tool wazuh.",
     techStack: ["Next.js", "Python"],
     links: {
       github: "https://github.com/varrun-v/System-monitoring-suite"
@@ -100,7 +100,7 @@ const PROJECTS = [
     id: 7,
     title: "CLI Password Manager",
     year: "2026",
-    description: " ",
+    description: "A secure CLI-based password manager built in Java that encrypts and stores credentials locally using AES-256 encryption, SHA-256 key derivation, and clean modular architecture for file storage and vault management.",
     techStack: ["Java"],
     links: {
       github: "https://github.com/varrun-v/PMcli"
