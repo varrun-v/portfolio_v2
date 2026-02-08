@@ -3,30 +3,56 @@ import { useLayoutEffect, useRef, useState, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Loader from './components/ui/Loader';
+import ProjectModal from './components/ui/ProjectModal';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const PROJECTS = [
   {
     id: 1,
+    title: "Property Management System",
+    year: "2025",
+    description: "A comprehensive Property Management System (PMS) supporting multiple tenants. Includes features for booking management, housekeeping scheduling, and financial reporting. Designed for scalability and ease of use.",
+    techStack: ["Next.js", "Supabase", "Prisma", "Zustand", "Shadcn UI"],
+    links: {
+      demo: "https://example.com/pms",
+      github: "https://github.com/example/pms"
+    },
+    images: [
+      "https://placehold.co/800x500/333/666?text=PMS+Dashboard",
+      "https://placehold.co/800x500/333/666?text=Booking+Calendar",
+      "https://placehold.co/800x500/333/666?text=Tenant+Settings"
+    ]
+  },
+  {
+    id: 3,
     title: "Exotic Trade",
-    category: "Development",
     year: "2024",
-    description: "An e-commerce website to sell auctionable items."
+    description: "An e-commerce platform designed for auctioning unique and rare items. Features real-time bidding, user authentication, and a secure payment gateway. Built to handle high-concurrency traffic during auctions.",
+    techStack: ["React", "Node.js", "Express", "MongoDB", "Socket.io", "TailwindCSS"],
+    links: {
+      demo: "https://exotic-chi.vercel.app",
+    },
+    images: [
+      "https://placehold.co/800x500/111/444?text=Auction+Dashboard",
+      "https://placehold.co/800x500/111/444?text=Exotic+Trade+Hero",
+      "https://placehold.co/800x500/111/444?text=Bidding+Interface"
+    ]
   },
   {
     id: 2,
     title: "RE-DACT",
-    category: "Design System",
     year: "2024",
-    description: "A text-redaction tool that detects and masks sensitive entities."
-  },
-  {
-    id: 3,
-    title: "Multi-tenant PMS",
-    category: "Experience",
-    year: "2025",
-    description: "A multi-tenant property management system."
+    description: "A specialized text-redaction tool that automatically detects and masks sensitive entities like names, dates, and locations within documents. Prioritizes privacy and data security for legal and compliance teams.",
+    techStack: ["Next.js", "Python", "SpaCy", "AWS Lambda", "TypeScript"],
+    links: {
+      demo: "https://example.com/redact",
+      github: "https://github.com/example/re-dact"
+    },
+    images: [
+      "https://placehold.co/800x500/222/555?text=RE-DACT+Interface",
+      "https://placehold.co/800x500/222/555?text=Redaction+Process"
+    ]
   }
 ];
 
@@ -39,6 +65,7 @@ const SKILLS = {
 export default function Home() {
   const comp = useRef(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedProject, setSelectedProject] = useState(null);
 
   // Loading Timer
   useEffect(() => {
@@ -56,16 +83,16 @@ export default function Home() {
       const tl = gsap.timeline();
 
       // Act 1: Entrance Animation
-        tl.from(".hero-char", {
-          z: -400,
-          opacity: 0,
-          duration: 1.4,
-          stagger: {
-            amount: 0.6,
-            from: "center"
-          },
-          ease: "power4.out"
-        })
+      tl.from(".hero-char", {
+        z: -400,
+        opacity: 0,
+        duration: 1.4,
+        stagger: {
+          amount: 0.6,
+          from: "center"
+        },
+        ease: "power4.out"
+      })
         .from(".hero-sub", {
           opacity: 0,
           y: 20,
@@ -144,7 +171,6 @@ export default function Home() {
     }, comp);
 
     return () => ctx.revert();
-    return () => ctx.revert();
   }, [isLoading]);
 
   // Interactive Hover Effect
@@ -167,11 +193,6 @@ export default function Home() {
   };
 
   // Show Loader if loading
-  // Note: We're not unmounting the main content, just covering it or returning early.
-  // Actually returning early is safer for GSAP context initialization timeline.
-  // BUT SEO-wise, we might want content in DOM. 
-  // For a portfolio, a simple condition is fine.
-
   if (isLoading) {
     return <Loader />;
   }
@@ -241,21 +262,35 @@ export default function Home() {
 
         <div className="flex flex-col gap-24">
           {PROJECTS.map((project, index) => (
-            <div key={project.id} className="project-card group relative cursor-pointer">
+            <div
+              key={project.id}
+              className="project-card group relative cursor-pointer"
+              onClick={() => setSelectedProject(project)}
+            >
               <div className="w-full aspect-[16/9] md:aspect-[21/9] bg-[var(--muted)] rounded-lg overflow-hidden relative mb-8">
-                <div className="absolute inset-0 bg-neutral-800 group-hover:bg-neutral-700 transition-colors duration-500" />
-                <div className="absolute inset-0 flex items-center justify-center opacity-30 group-hover:opacity-50 transition-opacity">
-                  <span className="text-6xl font-bold tracking-tighter mix-blend-overlay">{index + 1}</span>
+                {/* Hero Image for Card (First from list or Placeholder) */}
+                <div className="absolute inset-0">
+                  <img
+                    src={project.images[0]}
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100"
+                  />
+                </div>
+
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <span className="bg-white/10 backdrop-blur-md px-6 py-3 rounded-full text-white text-sm uppercase tracking-widest border border-white/20">
+                    View Project
+                  </span>
                 </div>
               </div>
 
               <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-4 border-b border-transparent group-hover:border-[var(--border)] pb-4 transition-colors duration-300">
                 <div>
                   <h3 className="text-3xl font-bold mb-2 group-hover:text-[var(--accent)] transition-colors duration-300">{project.title}</h3>
-                  <p className="text-[var(--muted-foreground)] max-w-xl text-lg">{project.description}</p>
+                  <p className="text-[var(--muted-foreground)] max-w-xl text-lg line-clamp-2">{project.description}</p>
                 </div>
                 <div className="flex gap-8 text-[var(--muted-foreground)] text-sm font-mono uppercase tracking-widest">
-                  <span>{project.category}</span>
                   <span>{project.year}</span>
                 </div>
               </div>
@@ -338,6 +373,12 @@ export default function Home() {
           Music: <a href="https://soundcloud.com/agusalvarez" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--foreground)] transition-colors">The Feeling by AgusAlvarez & Luke Bergs</a>
         </p>
       </footer>
+
+      {/* Project Modal */}
+      <ProjectModal
+        project={selectedProject}
+        onClose={() => setSelectedProject(null)}
+      />
 
     </main>
   );
