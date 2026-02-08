@@ -20,6 +20,7 @@ export default function ProjectModal({ project, onClose }) {
 
     useEffect(() => {
         if (project) {
+            setCurrentImageIndex(0); // Reset image index when a new project is opened
             document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
 
             // Animate In
@@ -60,6 +61,30 @@ export default function ProjectModal({ project, onClose }) {
             });
         });
     };
+
+    // Keyboard Navigation
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.key === 'ArrowRight') {
+                if (project?.images?.length > 1) {
+                    setCurrentImageIndex((prev) => (prev + 1) % project.images.length);
+                }
+            } else if (e.key === 'ArrowLeft') {
+                if (project?.images?.length > 1) {
+                    setCurrentImageIndex((prev) => (prev - 1 + project.images.length) % project.images.length);
+                }
+            } else if (e.key === 'Escape') {
+                if (isFullScreen) {
+                    setIsFullScreen(false);
+                } else {
+                    handleClose();
+                }
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [project, isFullScreen]);
 
     const nextImage = (e) => {
         e.stopPropagation();

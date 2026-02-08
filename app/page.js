@@ -17,9 +17,9 @@ const PROJECTS = [
     links: {
     },
     images: [
-      "projects/td-1.png",
-      "projects/td-2.png",
-      "projects/td-3.png"
+      "/projects/td-1.png",
+      "/projects/td-2.png",
+      "/projects/td-3.png"
     ]
   },
   {
@@ -46,12 +46,12 @@ const PROJECTS = [
       github: "https://github.com/varrun-v/RE-DACT"
     },
     images: [
-      "projects/rd-1.png",
-      "projects/rd-2.png",
-      "projects/rd-3.png"
+      "/projects/rd-1.png",
+      "/projects/rd-2.png",
+      "/projects/rd-3.png"
     ]
   },
-    {
+  {
     id: 4,
     title: "Posture Monitoring",
     year: "2026",
@@ -75,7 +75,7 @@ const PROJECTS = [
       github: "https://github.com/varrun-v/API-Management-System"
     },
     images: [
-      "projects/api-1.png",
+      "/projects/api-1.png",
     ]
   },
   {
@@ -88,12 +88,12 @@ const PROJECTS = [
       github: "https://github.com/varrun-v/System-monitoring-suite"
     },
     images: [
-      "projects/sm-1.png",
-      "projects/sm-2.png",
-      "projects/sm-3.png",
-      "projects/sm-4.png",
-      "projects/sm-5.png",
-      "projects/sm-6.png"
+      "/projects/sm-1.png",
+      "/projects/sm-2.png",
+      "/projects/sm-3.png",
+      "/projects/sm-4.png",
+      "/projects/sm-5.png",
+      "/projects/sm-6.png"
     ]
   },
   {
@@ -106,7 +106,7 @@ const PROJECTS = [
       github: "https://github.com/varrun-v/PMcli"
     },
     images: [
-      "projects/pm-1.png"
+      "/projects/pm-1.png"
     ]
   }
 ];
