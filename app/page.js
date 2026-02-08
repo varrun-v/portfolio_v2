@@ -56,7 +56,7 @@ const PROJECTS = [
     title: "Posture Monitoring",
     year: "2026",
     description: "An intelligent posture monitoring system that uses computer vision to detect slouching in real-time, distributed workers to analyze behavior patterns, WebSocket notifications to send alerts and delivers daily reports via email.",
-    techStack: ["Java"],
+    techStack: ["Next.js", "Python", "MediaPipe", "Redis", "Celery", "Postgres", "Podman"],
     links: {
       github: "https://github.com/varrun-v/posture"
     },
@@ -70,7 +70,7 @@ const PROJECTS = [
     title: "Lightweight API observability tool",
     year: "2025",
     description: "A Lightweight API Observability Gateway using Node.js, Redis, and Postgres for real-time traffic monitoring, audit logging, and error tracking across distributed microservices.",
-    techStack: ["Next.js", "Express", "Redis", "Postgres", "OpenAPI"],
+    techStack: ["Next.js", "Express", "Redis", "Postgres", "OpenAPI", "Podman"],
     links: {
       github: "https://github.com/varrun-v/API-Management-System"
     },
